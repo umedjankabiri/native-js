@@ -1,4 +1,4 @@
-import {ages, chipPredicate, courses, predicate} from "common/components/04/04.ts";
+import {ages, chipPredicate, courses, predicate, tasks} from "common/components/04/04.ts";
 
 test("The old men who are older than 90 should be taken.", ()=> {
     const oldAgesWithMethodFilter = ages.filter(age => age > 90);
@@ -20,4 +20,11 @@ test("Courses should be priced under 160.", ()=> {
     expect(chipCoursesWithOurFunction.length).toBe(2);
     expect(chipCoursesWithOurFunction[0].title).toBe("CSS");
     expect(chipCoursesWithOurFunction[1].title).toBe("REACT");
+})
+test("Get only completed tasks", ()=> {
+    const completedTasks = tasks.filter(task => task.isDone)
+
+    expect(completedTasks.length).toBe(2);
+    expect(completedTasks[0].id).toBe(2);
+    expect(completedTasks[1].id).toBe(4);
 })
