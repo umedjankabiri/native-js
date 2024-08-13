@@ -1,4 +1,5 @@
 import {increaseAge, user} from "common/components/08/08.ts";
+import {UsersProps} from "common/types/UsersProps.ts";
 
 test("reference type test to verify age mutation", ()=> {
     increaseAge(user)
@@ -30,4 +31,15 @@ test("Add value type test to verify variable immutability", ()=> {
 
     expect(newUsersCount).toBe(2)
     expect(usersCount).toBe(3)
+})
+test("Add reference type object test to verify shared address mutation", ()=> {
+    let newUser: UsersProps = {
+        name: "Leyla",
+        age: 32,
+        address: user.address
+    }
+    newUser.address && (newUser.address.street = "New Street")
+
+    expect(user.address).toBe(newUser.address)
+    expect(user.address?.street).toBe("New Street")
 })
