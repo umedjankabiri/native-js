@@ -1,4 +1,5 @@
 import './App.css'
+import {User} from "common/components/06/User.tsx";
 
 function App() {
     const names = ['Dimych', 'Sveta', 'Katya', 'Viktor', 'Ignat'];
@@ -24,6 +25,9 @@ function App() {
             <ul>
                 {userList}
             </ul>
+            <div>
+                <User/>
+            </div>
         </>
     )
 }
