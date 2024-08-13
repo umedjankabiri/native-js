@@ -24,6 +24,9 @@ export const ManComponent: FC<ManComponentProps> = ({title, man: {name}, ...prop
             <div>
                 {props.food}
             </div>
+            <div>
+                <input type="text" value={message} onChange={() => setMessage}/>
+            </div>
         </div>
     )
 }
