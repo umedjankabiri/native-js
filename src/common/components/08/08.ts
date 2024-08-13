@@ -7,3 +7,6 @@ export const user: UsersProps = {
         street: "Selim",
     }
 }
+export const increaseAge = (u: UsersProps)=> {
+    u.age++
+}
