@@ -9,3 +9,6 @@ export const repairHouse = (house: HousesProps) => {
 export const toFireStaff = (employee: GovernmentBuildingsProps, staffToFired: number)=> {
     return employee.staffCount -= staffToFired;
 }
+export const toHireStaff = (employee: GovernmentBuildingsProps, staffToHire: number)=> {
+    return employee.staffCount += staffToHire;
+}
