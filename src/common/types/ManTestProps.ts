@@ -9,5 +9,8 @@ type LessonTestProps = {
     name?: string
 }
 type AddressTestProps = {
-    street: string
+    street: StreetTestProps
+}
+type StreetTestProps = {
+    title: string
 }
