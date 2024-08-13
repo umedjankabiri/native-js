@@ -28,3 +28,10 @@ test("Get only completed tasks", ()=> {
     expect(completedTasks[0].id).toBe(2);
     expect(completedTasks[1].id).toBe(4);
 })
+test("Get only uncompleted tasks", ()=> {
+    const uncompletedTasks = tasks.filter(task => !task.isDone)
+
+    expect(uncompletedTasks.length).toBe(2);
+    expect(uncompletedTasks[0].id).toBe(1);
+    expect(uncompletedTasks[1].id).toBe(3);
+})
