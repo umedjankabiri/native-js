@@ -4,18 +4,45 @@ export type StudentProps = {
     name: string
     age: number
     isActive: boolean
-    address: AddressProps
-    technologies: TechnologiesProps[]
+    address: StudentAddressProps
+    technologies: StudentTechnologiesProps[]
 }
-type AddressProps = {
+type StudentAddressProps = {
     country: string
-    city: CityProps
+    city: StudentCityProps
 }
-type CityProps = {
+type StudentCityProps = {
     title: string
     street: string
 }
-type TechnologiesProps = {
+type StudentTechnologiesProps = {
     id: number
     title: string
+}
+
+/* *** Houses props for testing houses *** */
+export type CityProps = {
+    title: string
+    houses: HousesProps[]
+    governmentBuildings: GovernmentBuildingsProps[]
+    citizensNumber: number
+}
+export type HousesProps = {
+    id?: number
+    buildedAt: number
+    repaired: boolean
+    address: AddressProps
+}
+type AddressProps = {
+    street: StreetProps
+    number?: number
+}
+type StreetProps = {
+    title: string
+}
+export type GovernmentBuildingsProps = {
+    type: 'HOSPITAL' | 'FIRE-STATION'
+    budget: number
+    staffCount: number
+    address: AddressProps
 }
