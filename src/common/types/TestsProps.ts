@@ -8,5 +8,9 @@ export type StudentProps = {
 }
 type AddressProps = {
     country: string
-    city: string
+    city: CityProps
+}
+type CityProps = {
+    title: string
+    street: string
 }
