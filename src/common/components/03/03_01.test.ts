@@ -63,3 +63,11 @@ beforeEach(() => {
         citizensNumber: 20000000
     }
 })
+
+test("The budget should be changed for the HOSPITAL", ()=> {
+    expect(city.governmentBuildings[0].budget).toBe(200000);
+
+    addMoneyToBudget(city.governmentBuildings[0],100000)
+
+    expect(city.governmentBuildings[0].budget).toBe(300000);
+})
