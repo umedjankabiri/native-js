@@ -2,9 +2,12 @@ export type ManTestProps = {
     name: string
     age: number
     lessons: LessonTestProps[]
-    address: string
+    address: AddressTestProps
 }
 type LessonTestProps = {
     title: string
     name?: string
+}
+type AddressTestProps = {
+    street: string
 }
