@@ -4,5 +4,8 @@ export type ManComponentProps = {
     title: string
     man: ManTestProps
     food?: string[]
-    car?: string
+    car?: ModelProps
+}
+type ModelProps = {
+    model: string
 }
