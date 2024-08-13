@@ -1,5 +1,5 @@
 import {CityProps} from "common/types/TestsProps.ts";
-import {addMoneyToBudget} from "common/components/03/03_01.ts";
+import {addMoneyToBudget, repairHouse} from "common/components/03/03_01.ts";
 
 let city: CityProps;
 
@@ -81,4 +81,17 @@ test("The budget should be changed for the FIRE-STATION", ()=> {
     addMoneyToBudget(city.governmentBuildings[1],-10000)
 
     expect(city.governmentBuildings[1].budget).toBe(140000);
+})
+test("the houses should be repaired", ()=> {
+    expect(city.houses[0].repaired).toBe(false);
+    expect(city.houses[1].repaired).toBe(false);
+    expect(city.houses[2].repaired).toBe(false);
+
+    repairHouse(city.houses[0]);
+    repairHouse(city.houses[1]);
+    repairHouse(city.houses[2]);
+
+    expect(city.houses[0].repaired).toBe(true);
+    expect(city.houses[1].repaired).toBe(true);
+    expect(city.houses[2].repaired).toBe(true);
 })
