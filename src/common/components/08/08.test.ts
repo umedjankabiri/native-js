@@ -22,3 +22,12 @@ test("Add array reference test to verify item addition", ()=> {
 
     expect(users[users.length - 1]).toEqual({name: "Muhammad", age: 6})
 })
+test("Add value type test to verify variable immutability", ()=> {
+    const usersCount = 3
+    let newUsersCount = 1
+
+    newUsersCount++
+
+    expect(newUsersCount).toBe(2)
+    expect(usersCount).toBe(3)
+})
