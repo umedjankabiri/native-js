@@ -1,4 +1,5 @@
 import {StudentProps} from "common/types/TestsProps.ts";
+import {addSkill} from "common/components/03/03.ts";
 
 let student: StudentProps;
 
@@ -30,4 +31,13 @@ beforeEach(() => {
             }
         ],
     }
+})
+test("a new tech skill should be added to the student", () => {
+    expect(student.technologies.length).toBe(3)
+
+    addSkill(student, "React")
+
+    expect(student.technologies.length).toBe(4)
+    expect(student.technologies[3].title).toBe("React")
+    expect(student.technologies[3].id).toBeDefined();
 })
