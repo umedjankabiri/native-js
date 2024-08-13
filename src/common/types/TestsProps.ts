@@ -1,10 +1,11 @@
+/* *** Student props for testing students *** */
 export type StudentProps = {
     id: number
     name: string
     age: number
     isActive: boolean
     address: AddressProps
-    technologies: string[]
+    technologies: TechnologiesProps[]
 }
 type AddressProps = {
     country: string
@@ -13,4 +14,8 @@ type AddressProps = {
 type CityProps = {
     title: string
     street: string
+}
+type TechnologiesProps = {
+    id: number
+    title: string
 }
