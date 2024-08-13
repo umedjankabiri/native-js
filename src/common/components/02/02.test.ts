@@ -81,3 +81,16 @@ test("The 'city' test should contain 3 houses.", ()=> {
     expect(city.houses[2].address.street.title).toBe("Happy street");
     expect(city.houses[2].address.number).toBe(101);
 })
+test("The 'city' test should contain a hospital and a fire station.", ()=> {
+    expect(city.governmentBuildings.length).toBe(2)
+
+    expect(city.governmentBuildings[0].type).toBe("HOSPITAL")
+    expect(city.governmentBuildings[0].budget).toBe(200000)
+    expect(city.governmentBuildings[0].staffCount).toBe(2000)
+    expect(city.governmentBuildings[0].address.street.title).toBe("Central Str")
+
+    expect(city.governmentBuildings[1].type).toBe("FIRE-STATION")
+    expect(city.governmentBuildings[1].budget).toBe(50000)
+    expect(city.governmentBuildings[1].staffCount).toBe(200)
+    expect(city.governmentBuildings[1].address.street.title).toBe("South Str")
+})
