@@ -16,3 +16,8 @@ test("should update corresponding user", ()=> {
     expect(users['444'].name).toBe("Ekaterina")
     expect(users['444']).toEqual({id: 104, name: "Ekaterina"})
 })
+test("should added corresponding user", ()=> {
+    users['555'] = {id: 105, name: "Victor"}
+    expect(users['555'].name).toBe("Victor")
+    expect(users['555']).toEqual({id: 105, name: "Victor"})
+})
