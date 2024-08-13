@@ -1,4 +1,4 @@
-import {GovernmentBuildingsProps, HousesProps} from "common/types/TestsProps.ts";
+import {CityProps, GovernmentBuildingsProps, HousesProps} from "common/types/TestsProps.ts";
 
 export const addMoneyToBudget = (building: GovernmentBuildingsProps, newBudget: number) => {
     return building.budget += newBudget;
@@ -11,4 +11,7 @@ export const toFireStaff = (employee: GovernmentBuildingsProps, staffToFired: nu
 }
 export const toHireStaff = (employee: GovernmentBuildingsProps, staffToHire: number)=> {
     return employee.staffCount += staffToHire;
+}
+export function createMessage(city: CityProps) {
+    return `Hello ${city.title} citizens. I want you to be happy. All ${city.citizensNumber} people`
 }
