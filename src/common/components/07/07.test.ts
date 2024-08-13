@@ -10,3 +10,9 @@ beforeEach(()=> {
         '444': {id: 104, name: "Katya"}
     }
 })
+
+test("should update corresponding user", ()=> {
+    users['444'].name = "Ekaterina"
+    expect(users['444'].name).toBe("Ekaterina")
+    expect(users['444']).toEqual({id: 104, name: "Ekaterina"})
+})
