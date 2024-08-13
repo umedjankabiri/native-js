@@ -1,6 +1,6 @@
 import {StudentProps} from "common/types/TestsProps.ts";
 
-const man: StudentProps = {
+export const man: StudentProps = {
     id: 1,
     name: 'Kabiri',
     age: 37,
