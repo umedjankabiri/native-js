@@ -21,3 +21,7 @@ test("should added corresponding user", ()=> {
     expect(users['555'].name).toBe("Victor")
     expect(users['555']).toEqual({id: 105, name: "Victor"})
 })
+test("should delete corresponding user", ()=> {
+    delete users['555']
+    expect(users['555']).toBeUndefined()
+})
