@@ -1,5 +1,5 @@
 import {StudentProps} from "common/types/TestsProps.ts";
-import {addSkill, makeStudentActive} from "common/components/03/03.ts";
+import {addSkill, doesStudentLiveIn, makeStudentActive} from "common/components/03/03.ts";
 
 let student: StudentProps;
 
@@ -47,4 +47,13 @@ test("the student should be active", () => {
     makeStudentActive(student)
 
     expect(student.isActive).toBe(true)
+})
+test("does the student live in the city", () => {
+    expect(student.isActive).toBe(false)
+
+    let result1 = doesStudentLiveIn(student, "Moscow");
+    let result2 = doesStudentLiveIn(student, "Istanbul");
+
+    expect(result1).toBe(false)
+    expect(result2).toBe(true)
 })
