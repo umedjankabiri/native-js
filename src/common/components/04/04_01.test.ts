@@ -1,6 +1,6 @@
 import {CityProps} from "common/types/TestsProps.ts";
 import {
-    demolishHousesOnTheStreet,
+    demolishHousesOnTheStreet, getBuildingsWithStaffCountGreaterThen,
     getHousesOnTheStreet,
     getStreetsTitlesOfGovernmentsBuildings
 } from "common/components/04/04_01.ts";
@@ -90,4 +90,10 @@ test("list of street names and house titles", ()=> {
 
     expect(happyHouses.length).toBe(2);
     expect(whiteHouses.length).toBe(1);
+})
+test("buildings with correct staff count", ()=> {
+    let buildings = getBuildingsWithStaffCountGreaterThen(city.governmentBuildings, 500)
+
+    expect(buildings.length).toBe(1);
+    expect(buildings[0].type).toBe("HOSPITAL");
 })
