@@ -1,5 +1,5 @@
 import {StudentProps} from "common/types/TestsProps.ts";
-import {addSkill} from "common/components/03/03.ts";
+import {addSkill, makeStudentActive} from "common/components/03/03.ts";
 
 let student: StudentProps;
 
@@ -40,4 +40,11 @@ test("a new tech skill should be added to the student", () => {
     expect(student.technologies.length).toBe(4)
     expect(student.technologies[3].title).toBe("React")
     expect(student.technologies[3].id).toBeDefined();
+})
+test("the student should be active", () => {
+    expect(student.isActive).toBe(false)
+
+    makeStudentActive(student)
+
+    expect(student.isActive).toBe(true)
 })
