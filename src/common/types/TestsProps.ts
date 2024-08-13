@@ -3,6 +3,10 @@ export type StudentProps = {
     name: string
     age: number
     isActive: boolean
-    address: string
+    address: AddressProps
     technologies: string[]
+}
+type AddressProps = {
+    country: string
+    city: string
 }
