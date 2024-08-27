@@ -1,5 +1,5 @@
 import {ClientProps} from "common/types/ClientProps.ts";
-import {hairdresser} from "common/components/09/09.ts";
+import {makeHairstyle} from "common/components/09/09.ts";
 
 test("", ()=> {
     let client: ClientProps = {
@@ -8,7 +8,8 @@ test("", ()=> {
         address: {title: "Minsk"}
     }
 
-    hairdresser(client, 2)
+    const HairstylesClient = makeHairstyle(client, 2)
 
-    expect(client.hair).toBe(16)
+    expect(client.hair).toBe(32)
+    expect(HairstylesClient.hair).toBe(16)
 })
