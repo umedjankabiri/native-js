@@ -1,5 +1,8 @@
 import {ClientProps} from "common/types/ClientProps.ts";
 
-export const hairdresser = (client: ClientProps, power: number)=> {
-    client.hair /= power
+export const makeHairstyle = (client: ClientProps, power: number)=> {
+    const copyClient = {...client}
+    copyClient.hair /= power
+
+    return copyClient
 }
