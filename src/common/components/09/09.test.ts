@@ -1,13 +1,10 @@
 import {
-    addBook,
-    addCompany,
-    changeBooks,
+    addBook, changeBooks,
     changeClientAddress,
     changeClientHouse,
     changeLaptop,
     client,
-    makeHairstyle,
-    removeBook
+    makeHairstyle, removeBook, addCompany, changeCompanyName
 } from "common/components/09/09.ts";
 import {
     ClientWithBooksProps,
@@ -143,4 +140,22 @@ test("immutability adding 'companies' array, which inside the 'workerInNewCompan
     expect(AnotherWorkerInNewCompany.companies[2]).toStrictEqual({id: 3, name: "Yavuzlar"})
     expect(AnotherWorkerInNewCompany.companies.length).toBe(3)
 })
+test("immutability changing name inside of 'companies' array, which inside the 'workerInNewCompany' object", () => {
+    let workerInNewCompany: ClientWithLaptopProps & CompaniesProps = {
+        name: client.name,
+        hair: client.hair,
+        laptop: {
+            title: "Asus"
+        },
+        address: client.address,
+        companies: [{id: 1, name: "GSM Planet"}, {id: 2, name: "Karpan"}, {id: 3, name: "Yavuzlar"}]
+    }
+    let AnotherWorkerInNewCompany = changeCompanyName(workerInNewCompany, 1, "Planeta GSM")
 
+    expect(workerInNewCompany).not.toBe(AnotherWorkerInNewCompany)
+    expect(AnotherWorkerInNewCompany.laptop).toBe(workerInNewCompany.laptop)
+    expect(AnotherWorkerInNewCompany.address).toBe(workerInNewCompany.address)
+    expect(workerInNewCompany.companies).not.toBe(AnotherWorkerInNewCompany.companies)
+    expect(AnotherWorkerInNewCompany.companies[0]).toStrictEqual({id: 1, name: "Planeta GSM"})
+    expect(AnotherWorkerInNewCompany.companies.length).toBe(3)
+})
