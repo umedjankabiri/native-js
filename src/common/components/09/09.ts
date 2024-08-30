@@ -61,3 +61,6 @@ export const removeBook = (client: ClientWithLaptopProps & ClientWithBooksProps,
     ({...client, books: client.books.filter(book => book !== removedBook)})
 export const addCompany = (worker: ClientWithLaptopProps & CompaniesProps, newCompany: CompanyDefinitionProps) =>
     ({...worker, companies: [...worker.companies, newCompany]})
+export const changeCompanyName = (worker: ClientWithLaptopProps & CompaniesProps, id: number, newName: string) =>
+    ({...worker, companies: worker.companies.map(company =>
+            company.id === id ? {...company, name: newName} : company)})
