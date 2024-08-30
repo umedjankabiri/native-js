@@ -17,3 +17,10 @@ type LaptopProps = {
 export type ClientWithBooksProps = {
     books: string[]
 }
+export type CompaniesProps = {
+    companies: CompanyDefinitionProps[]
+}
+type CompanyDefinitionProps = {
+    id: number
+    name: string
+}
