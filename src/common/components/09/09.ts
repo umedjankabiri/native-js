@@ -31,3 +31,12 @@ export const changeLaptop = (client: ClientWithLaptopProps, laptop: string) => {
         }
     }
 }
+export const changeClientHouse = (client: ClientWithLaptopProps, house: number)=> {
+    return {
+        ...client,
+        address: {
+            ...client.address,
+            houseNumber: house
+        }
+    }
+}
