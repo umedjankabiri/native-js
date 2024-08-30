@@ -1,5 +1,5 @@
 import {
-    addBook,
+    addBook, changeBooks,
     changeClientAddress,
     changeClientHouse,
     changeLaptop,
@@ -55,8 +55,8 @@ test("immutability changing 'laptop' object, which inside the 'clientWithLaptop'
     expect(clientWithLaptop.laptop.title).toBe("Asus")
     expect(AnotherClientWithLaptop.laptop.title).toBe("macbook Pro 16 M3 MAX")
 })
-test("immutability changing 'books' array, which inside the 'clientWithLaptop' object", () => {
-    let clientWithLaptop: ClientWithLaptopProps & ClientWithBooksProps= {
+test("immutability adding 'book' to array 'books', which inside the 'clientWithBook' object", () => {
+    let clientWithBook: ClientWithLaptopProps & ClientWithBooksProps= {
         name: client.name,
         hair: client.hair,
         laptop: {
@@ -65,10 +65,33 @@ test("immutability changing 'books' array, which inside the 'clientWithLaptop' o
         address: client.address,
         books: ["HTML", "CSS", "JS", "REACT"]
     }
-    const AnotherClientWithLaptop = addBook(clientWithLaptop,  "Typescript")
+    const AnotherClientWithBook = addBook(clientWithBook,  "Typescript")
 
-    expect(clientWithLaptop).not.toBe(AnotherClientWithLaptop)
-    expect(AnotherClientWithLaptop.laptop).toBe(clientWithLaptop.laptop)
-    expect(AnotherClientWithLaptop.address).toBe(clientWithLaptop.address)
-    expect(AnotherClientWithLaptop.books[4]).toBe('Typescript')
+    expect(clientWithBook).not.toBe(AnotherClientWithBook)
+    expect(AnotherClientWithBook.laptop).toBe(clientWithBook.laptop)
+    expect(AnotherClientWithBook.address).toBe(clientWithBook.address)
+    expect(AnotherClientWithBook.books[4]).toBe('Typescript')
+    expect(AnotherClientWithBook.books.length).toBe(5)
+})
+test("immutability changing 'books' array, which inside the 'clientWithLaptop' object", () => {
+    let clientWithBooks: ClientWithLaptopProps & ClientWithBooksProps= {
+        name: client.name,
+        hair: client.hair,
+        laptop: {
+            title: "Asus"
+        },
+        address: client.address,
+        books: ["HTML", "CSS", "JS", "REACT", "Typescript", "Redux"]
+    }
+
+    let AnotherClientWithBooks = addBook(clientWithBooks,  "Redux")
+    expect(AnotherClientWithBooks.books[5]).toBe('Redux')
+    AnotherClientWithBooks = changeBooks(clientWithBooks,  "Redux", "RTK Query")
+
+    expect(clientWithBooks).not.toBe(AnotherClientWithBooks)
+    expect(AnotherClientWithBooks.laptop).toBe(clientWithBooks.laptop)
+    expect(AnotherClientWithBooks.address).toBe(clientWithBooks.address)
+    expect(AnotherClientWithBooks.books[4]).toBe('Typescript')
+    expect(AnotherClientWithBooks.books[5]).toBe('RTK Query')
+    expect(AnotherClientWithBooks.books.length).toBe(6)
 })
