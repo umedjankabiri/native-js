@@ -24,3 +24,6 @@ export type CompanyDefinitionProps = {
     id: number
     name: string
 }
+export type AssociativeCompanyProps = {
+    [key: string]: CompanyDefinitionProps[]
+}
