@@ -14,6 +14,6 @@ export type ClientWithLaptopProps = ClientProps & {
 type LaptopProps = {
     title: string
 }
-export type ClientWithBooks = {
+export type ClientWithBooksProps = {
     books: string[]
 }
