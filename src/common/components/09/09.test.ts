@@ -1,5 +1,12 @@
-import {changeClientAddress, changeClientHouse, changeLaptop, client, makeHairstyle} from "common/components/09/09.ts";
-import {ClientWithLaptopProps} from "common/types/ClientProps.ts";
+import {
+    addBook,
+    changeClientAddress,
+    changeClientHouse,
+    changeLaptop,
+    client,
+    makeHairstyle
+} from "common/components/09/09.ts";
+import {ClientWithBooksProps, ClientWithLaptopProps} from "common/types/ClientProps.ts";
 
 test("immutability principle of object", () => {
     const HairstylesClient = makeHairstyle(client, 2)
@@ -47,4 +54,21 @@ test("immutability changing 'laptop' object, which inside the 'clientWithLaptop'
     expect(AnotherClientWithLaptop.address).toBe(clientWithLaptop.address)
     expect(clientWithLaptop.laptop.title).toBe("Asus")
     expect(AnotherClientWithLaptop.laptop.title).toBe("macbook Pro 16 M3 MAX")
+})
+test("immutability changing 'books' array, which inside the 'clientWithLaptop' object", () => {
+    let clientWithLaptop: ClientWithLaptopProps & ClientWithBooksProps= {
+        name: client.name,
+        hair: client.hair,
+        laptop: {
+            title: "Asus"
+        },
+        address: client.address,
+        books: ["HTML", "CSS", "JS", "REACT"]
+    }
+    const AnotherClientWithLaptop = addBook(clientWithLaptop,  "Typescript")
+
+    expect(clientWithLaptop).not.toBe(AnotherClientWithLaptop)
+    expect(AnotherClientWithLaptop.laptop).toBe(clientWithLaptop.laptop)
+    expect(AnotherClientWithLaptop.address).toBe(clientWithLaptop.address)
+    expect(AnotherClientWithLaptop.books[4]).toBe('Typescript')
 })
