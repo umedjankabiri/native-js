@@ -49,3 +49,11 @@ export const addBook = (client: ClientWithLaptopProps & ClientWithBooksProps, ne
         ]
     }
 }
+export const changeBooks = (client: ClientWithLaptopProps & ClientWithBooksProps, oldBook: string, newBook: string) => {
+    return {
+        ...client,
+        books: [
+            ...client.books.map(book => book === oldBook ? newBook : book),
+        ]
+    }
+}
