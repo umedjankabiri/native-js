@@ -1,4 +1,10 @@
-import {ClientProps, ClientWithBooksProps, ClientWithLaptopProps} from "common/types/ClientProps.ts";
+import {
+    ClientProps,
+    ClientWithBooksProps,
+    ClientWithLaptopProps,
+    CompaniesProps,
+    CompanyDefinitionProps
+} from "common/types/ClientProps.ts";
 
 export const client: ClientProps = {
     name: "Dmitry",
@@ -53,3 +59,5 @@ export const changeBooks = (client: ClientWithLaptopProps & ClientWithBooksProps
     ({...client, books: client.books.map(book => book === oldBook ? newBook : book)})
 export const removeBook = (client: ClientWithLaptopProps & ClientWithBooksProps, removedBook: string) =>
     ({...client, books: client.books.filter(book => book !== removedBook)})
+export const addCompany = (worker: ClientWithLaptopProps & CompaniesProps, newCompany: CompanyDefinitionProps) =>
+    ({...worker, companies: [...worker.companies, newCompany]})
