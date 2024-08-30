@@ -1,4 +1,4 @@
-import {changeClientAddress, client, changeLaptop, makeHairstyle} from "common/components/09/09.ts";
+import {changeClientAddress, changeClientHouse, changeLaptop, client, makeHairstyle} from "common/components/09/09.ts";
 import {ClientWithLaptopProps} from "common/types/ClientProps.ts";
 
 test("immutability principle of object", () => {
@@ -14,6 +14,22 @@ test("immutability changing 'address' object, which inside the 'client' object",
     expect(client).not.toBe(changedAddress)
     expect(client.address.city).toBe("Minsk")
     expect(changedAddress.address.city).toBe("Kiev")
+})
+test("immutability changing 'address' object, which inside the 'clientWithNewHouse' object", () => {
+    let clientWithNewHouse: ClientWithLaptopProps = {
+        name: client.name,
+        hair: client.hair,
+        laptop: {
+            title: "Asus"
+        },
+        address: client.address,
+    }
+    const AnotherClientWithNewHouse = changeClientHouse(clientWithNewHouse,  99)
+
+    expect(clientWithNewHouse).not.toBe(AnotherClientWithNewHouse)
+    expect(AnotherClientWithNewHouse.address).not.toBe(clientWithNewHouse.address)
+    expect(AnotherClientWithNewHouse.laptop).toBe(clientWithNewHouse.laptop)
+    expect(AnotherClientWithNewHouse.address.houseNumber).toBe(99)
 })
 test("immutability changing 'laptop' object, which inside the 'clientWithLaptop' object", () => {
     let clientWithLaptop: ClientWithLaptopProps = {
