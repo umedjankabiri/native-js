@@ -4,7 +4,7 @@ import {
     changeClientHouse,
     changeLaptop,
     client,
-    makeHairstyle
+    makeHairstyle, removeBook
 } from "common/components/09/09.ts";
 import {ClientWithBooksProps, ClientWithLaptopProps} from "common/types/ClientProps.ts";
 
@@ -31,7 +31,7 @@ test("immutability changing 'address' object, which inside the 'clientWithNewHou
         },
         address: client.address,
     }
-    const AnotherClientWithNewHouse = changeClientHouse(clientWithNewHouse,  99)
+    const AnotherClientWithNewHouse = changeClientHouse(clientWithNewHouse, 99)
 
     expect(clientWithNewHouse).not.toBe(AnotherClientWithNewHouse)
     expect(AnotherClientWithNewHouse.address).not.toBe(clientWithNewHouse.address)
@@ -47,7 +47,7 @@ test("immutability changing 'laptop' object, which inside the 'clientWithLaptop'
         },
         address: client.address,
     }
-    const AnotherClientWithLaptop = changeLaptop(clientWithLaptop,  "macbook Pro 16 M3 MAX")
+    const AnotherClientWithLaptop = changeLaptop(clientWithLaptop, "macbook Pro 16 M3 MAX")
 
     expect(clientWithLaptop).not.toBe(AnotherClientWithLaptop)
     expect(AnotherClientWithLaptop.laptop).not.toBe(clientWithLaptop.laptop)
@@ -56,7 +56,7 @@ test("immutability changing 'laptop' object, which inside the 'clientWithLaptop'
     expect(AnotherClientWithLaptop.laptop.title).toBe("macbook Pro 16 M3 MAX")
 })
 test("immutability adding 'book' to array 'books', which inside the 'clientWithBook' object", () => {
-    let clientWithBook: ClientWithLaptopProps & ClientWithBooksProps= {
+    let clientWithBook: ClientWithLaptopProps & ClientWithBooksProps = {
         name: client.name,
         hair: client.hair,
         laptop: {
@@ -65,7 +65,7 @@ test("immutability adding 'book' to array 'books', which inside the 'clientWithB
         address: client.address,
         books: ["HTML", "CSS", "JS", "REACT"]
     }
-    const AnotherClientWithBook = addBook(clientWithBook,  "Typescript")
+    const AnotherClientWithBook = addBook(clientWithBook, "Typescript")
 
     expect(clientWithBook).not.toBe(AnotherClientWithBook)
     expect(AnotherClientWithBook.laptop).toBe(clientWithBook.laptop)
@@ -74,7 +74,7 @@ test("immutability adding 'book' to array 'books', which inside the 'clientWithB
     expect(AnotherClientWithBook.books.length).toBe(5)
 })
 test("immutability changing 'books' array, which inside the 'clientWithLaptop' object", () => {
-    let clientWithBooks: ClientWithLaptopProps & ClientWithBooksProps= {
+    let clientWithBooks: ClientWithLaptopProps & ClientWithBooksProps = {
         name: client.name,
         hair: client.hair,
         laptop: {
@@ -84,9 +84,9 @@ test("immutability changing 'books' array, which inside the 'clientWithLaptop' o
         books: ["HTML", "CSS", "JS", "REACT", "Typescript", "Redux"]
     }
 
-    let AnotherClientWithBooks = addBook(clientWithBooks,  "Redux")
+    let AnotherClientWithBooks = addBook(clientWithBooks, "Redux")
     expect(AnotherClientWithBooks.books[5]).toBe('Redux')
-    AnotherClientWithBooks = changeBooks(clientWithBooks,  "Redux", "RTK Query")
+    AnotherClientWithBooks = changeBooks(clientWithBooks, "Redux", "RTK Query")
 
     expect(clientWithBooks).not.toBe(AnotherClientWithBooks)
     expect(AnotherClientWithBooks.laptop).toBe(clientWithBooks.laptop)
@@ -94,4 +94,25 @@ test("immutability changing 'books' array, which inside the 'clientWithLaptop' o
     expect(AnotherClientWithBooks.books[4]).toBe('Typescript')
     expect(AnotherClientWithBooks.books[5]).toBe('RTK Query')
     expect(AnotherClientWithBooks.books.length).toBe(6)
+})
+test("immutability removing from 'book' array, which inside the 'clientWithBooks' object", () => {
+    let clientWithBooks: ClientWithLaptopProps & ClientWithBooksProps = {
+        name: client.name,
+        hair: client.hair,
+        laptop: {
+            title: "Asus"
+        },
+        address: client.address,
+        books: ["HTML", "CSS", "JS", "REACT", "Typescript", "Redux"]
+    }
+
+    let AnotherClientWithBooks = removeBook(clientWithBooks, "Redux")
+
+    expect(clientWithBooks).not.toBe(AnotherClientWithBooks)
+    expect(AnotherClientWithBooks.laptop).toBe(clientWithBooks.laptop)
+    expect(AnotherClientWithBooks.address).toBe(clientWithBooks.address)
+    expect(AnotherClientWithBooks.books).toStrictEqual(["HTML", "CSS", "JS", "REACT", "Typescript"])
+    expect(clientWithBooks.books).toStrictEqual(["HTML", "CSS", "JS", "REACT", "Typescript", "Redux"])
+    expect(AnotherClientWithBooks.books.length).toBe(5)
+    expect(clientWithBooks.books.length).toBe(6)
 })
