@@ -4,9 +4,10 @@ import {
     changeClientHouse,
     changeLaptop,
     client,
-    makeHairstyle, removeBook, addCompany, changeCompanyName
+    makeHairstyle, removeBook, addCompany, changeCompanyName, changeAssociativeCompanyName
 } from "common/components/09/09.ts";
 import {
+    AssociativeCompanyProps,
     ClientWithBooksProps,
     ClientWithLaptopProps,
     CompaniesProps,
@@ -158,4 +159,18 @@ test("immutability changing name inside of 'companies' array, which inside the '
     expect(workerInNewCompany.companies).not.toBe(AnotherWorkerInNewCompany.companies)
     expect(AnotherWorkerInNewCompany.companies[0].name).toBe("Planeta GSM")
     expect(AnotherWorkerInNewCompany.companies.length).toBe(3)
+})
+test("immutability changing name inside of associative array 'companies'", () => {
+    let companies: AssociativeCompanyProps = {
+        ["Umedjan"]: [{id: 1, name: "GSM Planet"}, {id: 2, name: "Karpan"}, {id: 3, name: "Yavuzlar"}],
+        ["Leyla"]: [{id: 1, name: "GSM Planet"}]
+    }
+
+    let AnotherCompanies
+    AnotherCompanies = changeAssociativeCompanyName(companies, "Umedjan", 1, "Planeta GSM")
+
+    expect(companies["Umedjan"]).not.toBe(AnotherCompanies["Umedjan"])
+    expect(companies["Leyla"]).toBe(AnotherCompanies["Leyla"])
+    expect(AnotherCompanies["Umedjan"][0].name).toBe("Planeta GSM")
+    expect(companies["Leyla"][0].name).toBe("GSM Planet")
 })
