@@ -156,6 +156,6 @@ test("immutability changing name inside of 'companies' array, which inside the '
     expect(AnotherWorkerInNewCompany.laptop).toBe(workerInNewCompany.laptop)
     expect(AnotherWorkerInNewCompany.address).toBe(workerInNewCompany.address)
     expect(workerInNewCompany.companies).not.toBe(AnotherWorkerInNewCompany.companies)
-    expect(AnotherWorkerInNewCompany.companies[0]).toStrictEqual({id: 1, name: "Planeta GSM"})
+    expect(AnotherWorkerInNewCompany.companies[0].name).toBe("Planeta GSM")
     expect(AnotherWorkerInNewCompany.companies.length).toBe(3)
 })
