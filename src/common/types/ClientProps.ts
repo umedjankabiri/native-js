@@ -20,7 +20,7 @@ export type ClientWithBooksProps = {
 export type CompaniesProps = {
     companies: CompanyDefinitionProps[]
 }
-type CompanyDefinitionProps = {
+export type CompanyDefinitionProps = {
     id: number
     name: string
 }
