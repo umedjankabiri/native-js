@@ -1,4 +1,4 @@
-import {ClientProps, ClientWithLaptopProps} from "common/types/ClientProps.ts";
+import {ClientProps, ClientWithBooksProps, ClientWithLaptopProps} from "common/types/ClientProps.ts";
 
 export const client: ClientProps = {
     name: "Dmitry",
@@ -38,5 +38,14 @@ export const changeClientHouse = (client: ClientWithLaptopProps, house: number)=
             ...client.address,
             houseNumber: house
         }
+    }
+}
+export const addBook = (client: ClientWithLaptopProps & ClientWithBooksProps, newBook: string) => {
+    return {
+        ...client,
+        books: [
+            ...client.books,
+            newBook
+        ]
     }
 }
