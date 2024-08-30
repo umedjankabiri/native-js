@@ -24,15 +24,11 @@ test("immutability changing 'laptop' object, which inside the 'clientWithLaptop'
         },
         address: client.address,
     }
-    let anotherClient = clientWithLaptop
+    const AnotherClientWithLaptop = changeLaptop(clientWithLaptop,  "macbook Pro 16 M3 MAX")
 
-    expect(anotherClient.laptop).toBe(clientWithLaptop.laptop)
-    expect(anotherClient.address).toBe(clientWithLaptop.address)
-
-    const changedLaptop = changeLaptop(clientWithLaptop,  "macbook Pro 16 M3 MAX")
-
-    expect(clientWithLaptop).not.toBe(changedLaptop)
+    expect(clientWithLaptop).not.toBe(AnotherClientWithLaptop)
+    expect(AnotherClientWithLaptop.laptop).not.toBe(clientWithLaptop.laptop)
+    expect(AnotherClientWithLaptop.address).toBe(clientWithLaptop.address)
     expect(clientWithLaptop.laptop.title).toBe("Asus")
-    expect(anotherClient.laptop.title).toBe("Asus")
-    expect(changedLaptop.laptop.title).toBe("macbook Pro 16 M3 MAX")
+    expect(AnotherClientWithLaptop.laptop.title).toBe("macbook Pro 16 M3 MAX")
 })
