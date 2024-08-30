@@ -1,4 +1,5 @@
 import {
+    AssociativeCompanyProps,
     ClientProps,
     ClientWithBooksProps,
     ClientWithLaptopProps,
@@ -64,3 +65,5 @@ export const addCompany = (worker: ClientWithLaptopProps & CompaniesProps, newCo
 export const changeCompanyName = (worker: ClientWithLaptopProps & CompaniesProps, id: number, newName: string) =>
     ({...worker, companies: worker.companies.map(company =>
             company.id === id ? {...company, name: newName} : company)})
+export const changeAssociativeCompanyName = (worker: AssociativeCompanyProps, useNameID: string, id: number, newName: string) =>
+    ({...worker, [useNameID]: worker[useNameID].map(company => company.id === id ? {...company, name: newName} : company)})
