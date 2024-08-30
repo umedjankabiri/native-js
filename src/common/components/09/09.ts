@@ -13,7 +13,7 @@ export const makeHairstyle = (client: ClientProps, power: number) => {
         hair: client.hair / power
     }
 }
-export const changeClientAddress = (client: ClientProps, city: string)=> {
+export const changeClientAddress = (client: ClientProps, city: string) => {
     return {
         ...client,
         address: {
@@ -31,7 +31,7 @@ export const changeLaptop = (client: ClientWithLaptopProps, laptop: string) => {
         }
     }
 }
-export const changeClientHouse = (client: ClientWithLaptopProps, house: number)=> {
+export const changeClientHouse = (client: ClientWithLaptopProps, house: number) => {
     return {
         ...client,
         address: {
@@ -49,11 +49,7 @@ export const addBook = (client: ClientWithLaptopProps & ClientWithBooksProps, ne
         ]
     }
 }
-export const changeBooks = (client: ClientWithLaptopProps & ClientWithBooksProps, oldBook: string, newBook: string) => {
-    return {
-        ...client,
-        books: [
-            ...client.books.map(book => book === oldBook ? newBook : book),
-        ]
-    }
-}
+export const changeBooks = (client: ClientWithLaptopProps & ClientWithBooksProps, oldBook: string, newBook: string) =>
+    ({...client, books: client.books.map(book => book === oldBook ? newBook : book)})
+export const removeBook = (client: ClientWithLaptopProps & ClientWithBooksProps, removedBook: string) =>
+    ({...client, books: client.books.filter(book => book !== removedBook)})
