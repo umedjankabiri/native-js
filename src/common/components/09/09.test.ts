@@ -1,12 +1,20 @@
 import {
-    addBook, changeBooks,
+    addBook,
+    addCompany,
+    changeBooks,
     changeClientAddress,
     changeClientHouse,
     changeLaptop,
     client,
-    makeHairstyle, removeBook
+    makeHairstyle,
+    removeBook
 } from "common/components/09/09.ts";
-import {ClientWithBooksProps, ClientWithLaptopProps} from "common/types/ClientProps.ts";
+import {
+    ClientWithBooksProps,
+    ClientWithLaptopProps,
+    CompaniesProps,
+    CompanyDefinitionProps
+} from "common/types/ClientProps.ts";
 
 test("immutability principle of object", () => {
     const HairstylesClient = makeHairstyle(client, 2)
@@ -83,8 +91,8 @@ test("immutability changing 'books' array, which inside the 'clientWithLaptop' o
         address: client.address,
         books: ["HTML", "CSS", "JS", "REACT", "Typescript", "Redux"]
     }
-
     let AnotherClientWithBooks = addBook(clientWithBooks, "Redux")
+
     expect(AnotherClientWithBooks.books[5]).toBe('Redux')
     AnotherClientWithBooks = changeBooks(clientWithBooks, "Redux", "RTK Query")
 
@@ -105,7 +113,6 @@ test("immutability removing from 'book' array, which inside the 'clientWithBooks
         address: client.address,
         books: ["HTML", "CSS", "JS", "REACT", "Typescript", "Redux"]
     }
-
     let AnotherClientWithBooks = removeBook(clientWithBooks, "Redux")
 
     expect(clientWithBooks).not.toBe(AnotherClientWithBooks)
@@ -116,3 +123,24 @@ test("immutability removing from 'book' array, which inside the 'clientWithBooks
     expect(AnotherClientWithBooks.books.length).toBe(5)
     expect(clientWithBooks.books.length).toBe(6)
 })
+test("immutability adding 'companies' array, which inside the 'workerInNewCompany' object", () => {
+    let workerInNewCompany: ClientWithLaptopProps & CompaniesProps = {
+        name: client.name,
+        hair: client.hair,
+        laptop: {
+            title: "Asus"
+        },
+        address: client.address,
+        companies: [{id: 1, name: "GSM Planet"}, {id: 2, name: "Karpan"}]
+    }
+    let newCompany: CompanyDefinitionProps = {id: 3, name: "Yavuzlar"}
+    let AnotherWorkerInNewCompany = addCompany(workerInNewCompany, newCompany)
+
+    expect(workerInNewCompany).not.toBe(AnotherWorkerInNewCompany)
+    expect(AnotherWorkerInNewCompany.laptop).toBe(workerInNewCompany.laptop)
+    expect(AnotherWorkerInNewCompany.address).toBe(workerInNewCompany.address)
+    expect(workerInNewCompany.companies).not.toBe(AnotherWorkerInNewCompany.companies)
+    expect(AnotherWorkerInNewCompany.companies[2]).toStrictEqual({id: 3, name: "Yavuzlar"})
+    expect(AnotherWorkerInNewCompany.companies.length).toBe(3)
+})
+
